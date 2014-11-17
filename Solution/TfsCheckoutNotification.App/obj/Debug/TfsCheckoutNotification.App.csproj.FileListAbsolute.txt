@@ -1,0 +1,10 @@
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.App.exe.config
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.App.exe
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.App.pdb
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.csprojResolveAssemblyReference.cache
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Form1.resources
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Properties.Resources.resources
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.csproj.GenerateResource.Cache
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.exe
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.pdb
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Icons\crashdump.ico
