@@ -41,7 +41,7 @@
             this.btnChangeCollection.TabIndex = 0;
             this.btnChangeCollection.Text = "Change...";
             this.btnChangeCollection.UseVisualStyleBackColor = true;
-            this.btnChangeCollection.Click += new System.EventHandler(this.button1_Click);
+            this.btnChangeCollection.Click += new System.EventHandler(this.btnChangeCollection_Click);
             // 
             // label1
             // 

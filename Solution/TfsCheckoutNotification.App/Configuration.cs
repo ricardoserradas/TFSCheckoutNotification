@@ -17,9 +17,11 @@ namespace TfsCheckoutNotification.App
         public Configuration()
         {
             InitializeComponent();
+
+            txtCollection.Text = Properties.Settings.Default["CurrentCollection"].ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnChangeCollection_Click(object sender, EventArgs e)
         {
             var tpcPicker = new TeamProjectPicker(TeamProjectPickerMode.NoProject, false);
 
@@ -27,7 +29,9 @@ namespace TfsCheckoutNotification.App
 
             if (dialogResult == DialogResult.OK)
             {
-                txtCollection.Text = tpcPicker.SelectedTeamProjectCollection.Uri.ToString(); 
+                txtCollection.Text = tpcPicker.SelectedTeamProjectCollection.Uri.ToString();
+                Properties.Settings.Default["CurrentCollection"] = txtCollection.Text;
+                Properties.Settings.Default.Save();
             }
         }
     }

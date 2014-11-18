@@ -53,7 +53,7 @@
             this.menu_Configure,
             this.menu_Exit});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(153, 70);
+            this.contextMenu.Size = new System.Drawing.Size(128, 48);
             // 
             // menu_Configure
             // 
@@ -68,6 +68,12 @@
             this.menu_Exit.Size = new System.Drawing.Size(152, 22);
             this.menu_Exit.Text = "Exit";
             this.menu_Exit.Click += new System.EventHandler(this.menu_Exit_Click);
+            // 
+            // timer_checkInterval
+            // 
+            this.timer_checkInterval.Enabled = true;
+            this.timer_checkInterval.Interval = 10000;
+            this.timer_checkInterval.Tick += new System.EventHandler(this.timer_checkInterval_Tick);
             // 
             // Form1
             // 
