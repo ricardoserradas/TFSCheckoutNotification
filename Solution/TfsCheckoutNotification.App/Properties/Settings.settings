@@ -5,5 +5,14 @@
     <Setting Name="CurrentCollection" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="IsIntervalMonitorType" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IntervalType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">hour</Value>
+    </Setting>
+    <Setting Name="IntervalValue" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

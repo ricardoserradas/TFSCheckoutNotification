@@ -34,5 +34,41 @@ namespace TfsCheckoutNotification.App.Properties {
                 this["CurrentCollection"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsIntervalMonitorType {
+            get {
+                return ((bool)(this["IsIntervalMonitorType"]));
+            }
+            set {
+                this["IsIntervalMonitorType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("hour")]
+        public string IntervalType {
+            get {
+                return ((string)(this["IntervalType"]));
+            }
+            set {
+                this["IntervalType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public string IntervalValue {
+            get {
+                return ((string)(this["IntervalValue"]));
+            }
+            set {
+                this["IntervalValue"] = value;
+            }
+        }
     }
 }
