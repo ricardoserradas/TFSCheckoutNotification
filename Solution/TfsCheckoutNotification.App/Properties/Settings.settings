@@ -11,8 +11,14 @@
     <Setting Name="IntervalType" Type="System.String" Scope="User">
       <Value Profile="(Default)">hour</Value>
     </Setting>
-    <Setting Name="IntervalValue" Type="System.String" Scope="User">
+    <Setting Name="IntervalValue" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="VisualStudioWasOpened" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="VisualStudioWasClosed" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

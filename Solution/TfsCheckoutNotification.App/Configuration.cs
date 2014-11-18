@@ -98,6 +98,11 @@ namespace TfsCheckoutNotification.App
             }
             
             this.SaveConfiguration();
+
+            var actualForm = (Form1)Application.OpenForms["Form1"];
+
+            actualForm.ConfigureTimer();
+
             this.Close();
         }
 

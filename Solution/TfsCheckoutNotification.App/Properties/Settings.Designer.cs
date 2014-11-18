@@ -62,12 +62,36 @@ namespace TfsCheckoutNotification.App.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public string IntervalValue {
+        public int IntervalValue {
             get {
-                return ((string)(this["IntervalValue"]));
+                return ((int)(this["IntervalValue"]));
             }
             set {
                 this["IntervalValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool VisualStudioWasOpened {
+            get {
+                return ((bool)(this["VisualStudioWasOpened"]));
+            }
+            set {
+                this["VisualStudioWasOpened"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool VisualStudioWasClosed {
+            get {
+                return ((bool)(this["VisualStudioWasClosed"]));
+            }
+            set {
+                this["VisualStudioWasClosed"] = value;
             }
         }
     }

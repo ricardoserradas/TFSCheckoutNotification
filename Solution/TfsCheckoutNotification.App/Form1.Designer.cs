@@ -35,6 +35,7 @@
             this.menu_Configure = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.timer_checkInterval = new System.Windows.Forms.Timer(this.components);
+            this.timer_toast = new System.Windows.Forms.Timer(this.components);
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,22 +59,26 @@
             // menu_Configure
             // 
             this.menu_Configure.Name = "menu_Configure";
-            this.menu_Configure.Size = new System.Drawing.Size(152, 22);
+            this.menu_Configure.Size = new System.Drawing.Size(127, 22);
             this.menu_Configure.Text = "Configure";
             this.menu_Configure.Click += new System.EventHandler(this.menu_Configure_Click);
             // 
             // menu_Exit
             // 
             this.menu_Exit.Name = "menu_Exit";
-            this.menu_Exit.Size = new System.Drawing.Size(152, 22);
+            this.menu_Exit.Size = new System.Drawing.Size(127, 22);
             this.menu_Exit.Text = "Exit";
             this.menu_Exit.Click += new System.EventHandler(this.menu_Exit_Click);
             // 
             // timer_checkInterval
             // 
-            this.timer_checkInterval.Enabled = true;
             this.timer_checkInterval.Interval = 10000;
             this.timer_checkInterval.Tick += new System.EventHandler(this.timer_checkInterval_Tick);
+            // 
+            // timer_toast
+            // 
+            this.timer_toast.Enabled = true;
+            this.timer_toast.Tick += new System.EventHandler(this.timer_toast_Tick);
             // 
             // Form1
             // 
@@ -98,6 +103,7 @@
         private System.Windows.Forms.ToolStripMenuItem menu_Configure;
         private System.Windows.Forms.ToolStripMenuItem menu_Exit;
         private System.Windows.Forms.Timer timer_checkInterval;
+        private System.Windows.Forms.Timer timer_toast;
     }
 }
 
