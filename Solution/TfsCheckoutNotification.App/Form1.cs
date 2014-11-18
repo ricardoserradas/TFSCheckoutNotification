@@ -162,7 +162,7 @@ namespace TfsCheckoutNotification.App
         {
             var processes = Process.GetProcessesByName("devenv");
 
-            if (processes.Count() > 1)
+            if (processes.Count() > 0)
             {
                 this.VisualStudioWasOpened = true;
                 this.VisualStudioWasClosed = false;
@@ -176,7 +176,7 @@ namespace TfsCheckoutNotification.App
             {
                 var processes = Process.GetProcessesByName("devenv");
 
-                if (processes.Count() == 1)
+                if (processes.Count() == 0)
                 {
                     this.VisualStudioWasClosed = true;
                 }
