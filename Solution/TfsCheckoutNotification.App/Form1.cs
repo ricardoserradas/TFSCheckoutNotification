@@ -38,8 +38,6 @@ namespace TfsCheckoutNotification.App
         {
             InitializeComponent();
 
-            QueryPendingChanges(true);
-
             ConfigureTimer();
         }
 
@@ -110,9 +108,10 @@ namespace TfsCheckoutNotification.App
             }
         }
 
-        private void ShowToast(int totalPendingChanges)
+        private void ShowToast(int totalPendingChanges, string message = "")
         {
-            this.notifyIcon.BalloonTipText = string.Format("You have {0} pending change(s)", totalPendingChanges == 0 ? "no" : totalPendingChanges.ToString());
+            this.notifyIcon.BalloonTipIcon = string.IsNullOrWhiteSpace(message) ? ToolTipIcon.Info : ToolTipIcon.Warning;
+            this.notifyIcon.BalloonTipText = string.Format(string.IsNullOrWhiteSpace(message) ? "You have {0} pending change(s)" : message, totalPendingChanges == 0 ? "no" : totalPendingChanges.ToString());
             this.notifyIcon.ShowBalloonTip(3);
         }
 
@@ -120,33 +119,42 @@ namespace TfsCheckoutNotification.App
         {
             timer_checkInterval.Stop();
             timer_toast.Stop();
-            
-            var isIntervalMonitorType = (bool)Properties.Settings.Default["IsIntervalMonitorType"];
 
-            if (isIntervalMonitorType)
+            var collection = Properties.Settings.Default["CurrentCollection"].ToString();
+
+            if (!string.IsNullOrWhiteSpace(collection))
             {
-                var intervalValue = (int)Properties.Settings.Default["IntervalValue"];
-                var intervalType = Properties.Settings.Default["IntervalType"].ToString();
-                var interval = 0;
+                var isIntervalMonitorType = (bool)Properties.Settings.Default["IsIntervalMonitorType"];
 
-                if (intervalType.Equals("minute"))
+                if (isIntervalMonitorType)
                 {
-                    interval = intervalValue * 60000;
+                    var intervalValue = (int)Properties.Settings.Default["IntervalValue"];
+                    var intervalType = Properties.Settings.Default["IntervalType"].ToString();
+                    var interval = 0;
+
+                    if (intervalType.Equals("minute"))
+                    {
+                        interval = intervalValue * 60000;
+                    }
+                    else
+                    {
+                        interval = intervalValue * 3600000;
+                    }
+
+                    timer_toast.Interval = interval;
+                    timer_toast.Start();
                 }
                 else
                 {
-                    interval = intervalValue * 3600000;
-                }
-
-                timer_toast.Interval = interval;
-                timer_toast.Start();
+                    timer_checkInterval.Interval = 1000;
+                    this.VisualStudioWasOpened = false;
+                    this.VisualStudioWasClosed = false;
+                    timer_checkInterval.Start();
+                } 
             }
             else
             {
-                timer_checkInterval.Interval = 1000;
-                this.VisualStudioWasOpened = false;
-                this.VisualStudioWasClosed = false;
-                timer_checkInterval.Start();
+                this.ShowToast(0, "You must specify the collection to monitor.");
             }
         }
 

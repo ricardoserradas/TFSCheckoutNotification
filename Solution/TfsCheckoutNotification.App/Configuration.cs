@@ -66,7 +66,7 @@ namespace TfsCheckoutNotification.App
             Properties.Settings.Default["IsIntervalMonitorType"] = rdMonitorInterval.Checked;
             if (rdMonitorInterval.Checked)
             {
-                Properties.Settings.Default["IntervalValue"] = txtIntervalValue.Text;
+                Properties.Settings.Default["IntervalValue"] = int.Parse(txtIntervalValue.Text);
                 Properties.Settings.Default["IntervalType"] = cmbIntervalType.SelectedItem.ToString(); 
             }
             Properties.Settings.Default.Save();
@@ -85,10 +85,18 @@ namespace TfsCheckoutNotification.App
 
             if (rdMonitorInterval.Checked)
             {
+                int tryResult;
+                
                 if (string.IsNullOrWhiteSpace(txtIntervalValue.Text))
                 {
                     txtIntervalValue.Focus();
                     return;
+                }
+                else if (!int.TryParse(txtIntervalValue.Text, out tryResult))
+                {
+                    MessageBox.Show("The interval value must be an integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtIntervalValue.Text = string.Empty;
+                    txtIntervalValue.Focus();
                 }
                 else if (cmbIntervalType.SelectedItem == null)
                 {

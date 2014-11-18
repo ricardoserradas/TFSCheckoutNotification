@@ -36,8 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnChangeCollection = new System.Windows.Forms.Button();
             this.grpMonitorType = new System.Windows.Forms.GroupBox();
-            this.rdMonitorInterval = new System.Windows.Forms.RadioButton();
             this.rdMonitorVisualStudio = new System.Windows.Forms.RadioButton();
+            this.rdMonitorInterval = new System.Windows.Forms.RadioButton();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.grpIntervalConfiguration.SuspendLayout();
@@ -121,6 +121,17 @@
             this.grpMonitorType.TabStop = false;
             this.grpMonitorType.Text = "Monitor Type";
             // 
+            // rdMonitorVisualStudio
+            // 
+            this.rdMonitorVisualStudio.AutoSize = true;
+            this.rdMonitorVisualStudio.Location = new System.Drawing.Point(167, 19);
+            this.rdMonitorVisualStudio.Name = "rdMonitorVisualStudio";
+            this.rdMonitorVisualStudio.Size = new System.Drawing.Size(195, 17);
+            this.rdMonitorVisualStudio.TabIndex = 14;
+            this.rdMonitorVisualStudio.TabStop = true;
+            this.rdMonitorVisualStudio.Text = "Notify me when Visual Studio closes";
+            this.rdMonitorVisualStudio.UseVisualStyleBackColor = true;
+            // 
             // rdMonitorInterval
             // 
             this.rdMonitorInterval.AutoSize = true;
@@ -132,17 +143,6 @@
             this.rdMonitorInterval.Text = "Monitor by Interval";
             this.rdMonitorInterval.UseVisualStyleBackColor = true;
             this.rdMonitorInterval.CheckedChanged += new System.EventHandler(this.rdMonitorType_CheckedChanged);
-            // 
-            // rdMonitorVisualStudio
-            // 
-            this.rdMonitorVisualStudio.AutoSize = true;
-            this.rdMonitorVisualStudio.Location = new System.Drawing.Point(167, 19);
-            this.rdMonitorVisualStudio.Name = "rdMonitorVisualStudio";
-            this.rdMonitorVisualStudio.Size = new System.Drawing.Size(195, 17);
-            this.rdMonitorVisualStudio.TabIndex = 14;
-            this.rdMonitorVisualStudio.TabStop = true;
-            this.rdMonitorVisualStudio.Text = "Notify me when Visual Studio closes";
-            this.rdMonitorVisualStudio.UseVisualStyleBackColor = true;
             // 
             // btnSave
             // 
@@ -168,7 +168,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(708, 290);
+            this.ClientSize = new System.Drawing.Size(708, 200);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.grpMonitorType);
@@ -176,8 +176,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnChangeCollection);
             this.Controls.Add(this.grpIntervalConfiguration);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Configuration";
-            this.Text = "Configuration";
+            this.Text = "Configuration - TFS Checkout Notification";
             this.grpIntervalConfiguration.ResumeLayout(false);
             this.grpIntervalConfiguration.PerformLayout();
             this.grpMonitorType.ResumeLayout(false);
