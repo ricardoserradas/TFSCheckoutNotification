@@ -24,5 +24,12 @@ namespace TfsCheckoutNotification.App
         {
             this.Close();
         }
+
+        private void menu_Configure_Click(object sender, EventArgs e)
+        {
+            var configuration = new Configuration();
+
+            configuration.Show();
+        }
     }
 }

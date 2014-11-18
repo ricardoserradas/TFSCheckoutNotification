@@ -1,10 +1,14 @@
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Icons\crashdump.ico
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.App.exe.config
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.App.exe
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.App.pdb
-C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.csprojResolveAssemblyReference.cache
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\System.Net.Http.Formatting.dll
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\System.Web.Http.dll
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\System.Net.Http.Formatting.xml
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\System.Web.Http.xml
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Configuration.resources
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Form1.resources
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Properties.Resources.resources
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.csproj.GenerateResource.Cache
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.exe
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.pdb
-C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Icons\crashdump.ico

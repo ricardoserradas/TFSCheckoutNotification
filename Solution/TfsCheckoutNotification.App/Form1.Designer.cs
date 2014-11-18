@@ -53,18 +53,19 @@
             this.menu_Configure,
             this.menu_Exit});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(128, 48);
+            this.contextMenu.Size = new System.Drawing.Size(153, 70);
             // 
             // menu_Configure
             // 
             this.menu_Configure.Name = "menu_Configure";
-            this.menu_Configure.Size = new System.Drawing.Size(127, 22);
+            this.menu_Configure.Size = new System.Drawing.Size(152, 22);
             this.menu_Configure.Text = "Configure";
+            this.menu_Configure.Click += new System.EventHandler(this.menu_Configure_Click);
             // 
             // menu_Exit
             // 
             this.menu_Exit.Name = "menu_Exit";
-            this.menu_Exit.Size = new System.Drawing.Size(127, 22);
+            this.menu_Exit.Size = new System.Drawing.Size(152, 22);
             this.menu_Exit.Text = "Exit";
             this.menu_Exit.Click += new System.EventHandler(this.menu_Exit_Click);
             // 
