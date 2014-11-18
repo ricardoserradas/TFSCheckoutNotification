@@ -109,6 +109,7 @@
             this.btnChangeCollection.TabIndex = 9;
             this.btnChangeCollection.Text = "Change...";
             this.btnChangeCollection.UseVisualStyleBackColor = true;
+            this.btnChangeCollection.Click += new System.EventHandler(this.btnChangeCollection_Click);
             // 
             // grpMonitorType
             // 
