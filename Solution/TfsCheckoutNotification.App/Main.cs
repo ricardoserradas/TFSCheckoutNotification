@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.TeamFoundation.VersionControl.Client;
 using Microsoft.TeamFoundation.Client;
@@ -13,7 +8,7 @@ using System.Diagnostics;
 
 namespace TfsCheckoutNotification.App
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         private bool VisualStudioWasOpened{
             get{
@@ -34,9 +29,11 @@ namespace TfsCheckoutNotification.App
             }
         }
         
-        public Form1()
+        public Main()
         {
             InitializeComponent();
+
+            QueryPendingChanges();
 
             ConfigureTimer();
         }
@@ -90,28 +87,22 @@ namespace TfsCheckoutNotification.App
 
             var vcs = tpc.GetService<VersionControlServer>();
 
-            var workspaces = vcs.QueryWorkspaces(null, vcs.AuthorizedUser.ToString(), Environment.MachineName);
+            var workspaces = vcs.QueryWorkspaces(null, vcs.AuthorizedUser, Environment.MachineName);
 
-            if (workspaces.Count() > 0)
+            if (!workspaces.Any()) return;
+            
+            var totalPendingChanges = workspaces.Sum(workspace => workspace.GetPendingChanges().Count());
+
+            if (totalPendingChanges > 0 || showToastWhenZero)
             {
-                var totalPendingChanges = 0;
-
-                foreach (Workspace workspace in workspaces)
-                {
-                    totalPendingChanges += workspace.GetPendingChanges().Count();
-                }
-
-                if (totalPendingChanges > 0 || showToastWhenZero)
-                {
-                    ShowToast(totalPendingChanges);
-                }
+                ShowToast(totalPendingChanges);
             }
         }
 
         private void ShowToast(int totalPendingChanges, string message = "")
         {
             this.notifyIcon.BalloonTipIcon = string.IsNullOrWhiteSpace(message) ? ToolTipIcon.Info : ToolTipIcon.Warning;
-            this.notifyIcon.BalloonTipText = string.Format(string.IsNullOrWhiteSpace(message) ? "You have {0} pending change(s)" : message, totalPendingChanges == 0 ? "no" : totalPendingChanges.ToString());
+            this.notifyIcon.BalloonTipText = string.Format(string.IsNullOrWhiteSpace(message) ? "You have {0} pending change(s)" : message, totalPendingChanges == 0 ? "no" : totalPendingChanges.ToString(CultureInfo.InvariantCulture));
             this.notifyIcon.ShowBalloonTip(3);
         }
 
@@ -130,7 +121,7 @@ namespace TfsCheckoutNotification.App
                 {
                     var intervalValue = (int)Properties.Settings.Default["IntervalValue"];
                     var intervalType = Properties.Settings.Default["IntervalType"].ToString();
-                    var interval = 0;
+                    int interval;
 
                     if (intervalType.Equals("minute"))
                     {
@@ -162,37 +153,23 @@ namespace TfsCheckoutNotification.App
         {
             var processes = Process.GetProcessesByName("devenv");
 
-            if (processes.Count() > 0)
-            {
-                this.VisualStudioWasOpened = true;
-                this.VisualStudioWasClosed = false;
-                timer_checkInterval.Interval = 1000;
-            }
+            if (!processes.Any()) return;
+            
+            this.VisualStudioWasOpened = true;
+            this.VisualStudioWasClosed = false;
+            timer_checkInterval.Interval = 1000;
         }
 
         private void CheckVisualStudioClosed()
         {
-            if (this.VisualStudioWasOpened)
+            if (!this.VisualStudioWasOpened) return;
+            
+            var processes = Process.GetProcessesByName("devenv");
+
+            if (!processes.Any())
             {
-                var processes = Process.GetProcessesByName("devenv");
-
-                if (processes.Count() == 0)
-                {
-                    this.VisualStudioWasClosed = true;
-                }
+                this.VisualStudioWasClosed = true;
             }
-        }
-
-        private void SetVisualStudioOpenedValue(bool opened)
-        {
-            Properties.Settings.Default["VisualStudioWasOpened"] = opened;
-            Properties.Settings.Default.Save();
-        }
-
-        private void SetVisualStudioClosedValue(bool closed)
-        {
-            Properties.Settings.Default["VisualStudioWasClosed"] = closed;
-            Properties.Settings.Default.Save();
         }
     }
 }

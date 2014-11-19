@@ -9,9 +9,12 @@ C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.WITDataStore.dll
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.csprojResolveAssemblyReference.cache
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Configuration.resources
-C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Form1.resources
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Properties.Resources.resources
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.csproj.GenerateResource.Cache
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.exe
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.pdb
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.App.pdb
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Main.resources
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.Client.dll
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.VersionControl.Client.dll
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.VersionControl.Client.xml
