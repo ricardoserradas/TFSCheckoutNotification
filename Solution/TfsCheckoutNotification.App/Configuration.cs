@@ -1,13 +1,5 @@
 ﻿using Microsoft.TeamFoundation.Client;
-using Microsoft.TeamFoundation.Proxy;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TfsCheckoutNotification.App
@@ -50,14 +42,7 @@ namespace TfsCheckoutNotification.App
 
         private void rdMonitorType_CheckedChanged(object sender, EventArgs e)
         {
-            if (rdMonitorInterval.Checked)
-            {
-                grpIntervalConfiguration.Enabled = true;
-            }
-            else
-            {
-                grpIntervalConfiguration.Enabled = false;
-            }
+            grpIntervalConfiguration.Enabled = rdMonitorInterval.Checked;
         }
 
         private void SaveConfiguration()
