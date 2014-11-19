@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Configuration));
             this.grpIntervalConfiguration = new System.Windows.Forms.GroupBox();
             this.cmbIntervalType = new System.Windows.Forms.ComboBox();
             this.txtIntervalValue = new System.Windows.Forms.TextBox();
@@ -177,8 +178,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnChangeCollection);
             this.Controls.Add(this.grpIntervalConfiguration);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Configuration";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configuration - TFS Checkout Notification";
             this.grpIntervalConfiguration.ResumeLayout(false);
             this.grpIntervalConfiguration.PerformLayout();
