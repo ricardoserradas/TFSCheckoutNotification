@@ -83,19 +83,26 @@ namespace TfsCheckoutNotification.App
         {
             var tpcUri = Properties.Settings.Default["CurrentCollection"].ToString();
 
-            var tpc = new TfsTeamProjectCollection(new Uri(tpcUri));
-
-            var vcs = tpc.GetService<VersionControlServer>();
-
-            var workspaces = vcs.QueryWorkspaces(null, vcs.AuthorizedUser, Environment.MachineName);
-
-            if (!workspaces.Any()) return;
-            
-            var totalPendingChanges = workspaces.Sum(workspace => workspace.GetPendingChanges().Count());
-
-            if (totalPendingChanges > 0 || showToastWhenZero)
+            if (!string.IsNullOrWhiteSpace(tpcUri))
             {
-                ShowToast(totalPendingChanges);
+                var tpc = new TfsTeamProjectCollection(new Uri(tpcUri));
+
+                var vcs = tpc.GetService<VersionControlServer>();
+
+                var workspaces = vcs.QueryWorkspaces(null, vcs.AuthorizedUser, Environment.MachineName);
+
+                if (!workspaces.Any()) return;
+
+                var totalPendingChanges = workspaces.Sum(workspace => workspace.GetPendingChanges().Count());
+
+                if (totalPendingChanges > 0 || showToastWhenZero)
+                {
+                    ShowToast(totalPendingChanges);
+                }
+            }
+            else
+            {
+                this.ShowToast(0, "You must specify the collection to monitor.");
             }
         }
 

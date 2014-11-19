@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TfsCheckoutNotification.App</RootNamespace>
-    <AssemblyName>TfsCheckoutNotification.App</AssemblyName>
+    <AssemblyName>TfsCheckoutNotification</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
