@@ -107,9 +107,9 @@ namespace TfsCheckoutNotification.App
             
             this.SaveConfiguration();
 
-            var actualForm = (Main)Application.OpenForms["Form1"];
+            var actualForm = (Main)Application.OpenForms["Main"];
 
-            actualForm.ConfigureTimer();
+            if (actualForm != null) actualForm.ConfigureTimer();
 
             this.Close();
         }
