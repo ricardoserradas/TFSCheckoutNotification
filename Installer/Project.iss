@@ -31,14 +31,14 @@ PrivilegesRequired=admin
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.VersionControl.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.WITDataStore.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\System.Net.Http.Formatting.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\System.Web.Http.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.VersionControl.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.WITDataStore.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\System.Net.Http.Formatting.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\System.Web.Http.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.exe.config"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
