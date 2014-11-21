@@ -80,7 +80,7 @@
             this.timer_toast.Enabled = true;
             this.timer_toast.Tick += new System.EventHandler(this.timer_toast_Tick);
             // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

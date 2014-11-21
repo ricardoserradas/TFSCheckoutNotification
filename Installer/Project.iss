@@ -39,14 +39,15 @@ Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.WITDataStor
 Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\System.Net.Http.Formatting.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\System.Web.Http.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Icons\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
+Name: "{group}\{#MyAppName}"; Filename: "{app}\icon.ico"
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [Registry]
-Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "TFSCheckoutNotification"; ValueData: """{app}\{#MyAppExeName}"""; Flags: uninsdeletevalue
+Root: HKCU; Subkey: "Software\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "TFSCheckoutNotification"; ValueData: """{app}\{#MyAppExeName}"""; Flags: uninsdeletevalue

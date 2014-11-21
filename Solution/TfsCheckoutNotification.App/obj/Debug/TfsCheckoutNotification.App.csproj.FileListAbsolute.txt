@@ -1,4 +1,3 @@
-C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Icons\crashdump.ico
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\System.Net.Http.Formatting.dll
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\System.Web.Http.dll
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll
@@ -18,3 +17,4 @@ C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.pdb
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.exe
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.pdb
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\Icons\icon.ico
