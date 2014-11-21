@@ -25,6 +25,7 @@ DisableProgramGroupPage=yes
 OutputBaseFilename=tfscheckoutnotification_install
 Compression=lzma
 SolidCompression=yes
+UninstallDisplayIcon={app}\icon.ico
 PrivilegesRequired=admin
 
 [Languages]
@@ -43,7 +44,6 @@ Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Icons\icon.ico"; Dest
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: "{group}\{#MyAppName}"; Filename: "{app}\icon.ico"
 
 [Run]
