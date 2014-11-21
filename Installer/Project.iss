@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "TFS Checkout Notification"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.0.2.0"
 #define MyAppPublisher "Ricardo Serradas"
 #define MyAppURL "http://blog.ricardoserradas.net"
 #define MyAppExeName "TfsCheckoutNotification.exe"
@@ -44,7 +44,7 @@ Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Icons\icon.ico"; Dest
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\icon.ico"
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent

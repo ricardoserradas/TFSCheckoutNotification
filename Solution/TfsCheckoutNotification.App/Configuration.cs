@@ -74,17 +74,22 @@ namespace TfsCheckoutNotification.App
                 
                 if (string.IsNullOrWhiteSpace(txtIntervalValue.Text))
                 {
+                    MessageBox.Show("You must set an interval.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtIntervalValue.Focus();
                     return;
                 }
-                else if (!int.TryParse(txtIntervalValue.Text, out tryResult))
+                
+                if (!int.TryParse(txtIntervalValue.Text, out tryResult))
                 {
                     MessageBox.Show("The interval value must be an integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtIntervalValue.Text = string.Empty;
                     txtIntervalValue.Focus();
+                    return;
                 }
-                else if (cmbIntervalType.SelectedItem == null)
+                
+                if (cmbIntervalType.SelectedItem == null)
                 {
+                    MessageBox.Show("You must select the interval type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     cmbIntervalType.Focus();
                     return;
                 }

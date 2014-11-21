@@ -144,7 +144,7 @@ namespace TfsCheckoutNotification.App
                 }
                 else
                 {
-                    timer_checkInterval.Interval = 1000;
+                    timer_checkInterval.Interval = 600000; // If the user has pending changes and closes visual studio, he will be notified every 10 minutes.
                     this.VisualStudioWasOpened = false;
                     this.VisualStudioWasClosed = false;
                     timer_checkInterval.Start();

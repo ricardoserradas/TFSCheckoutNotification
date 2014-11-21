@@ -52,7 +52,7 @@
             this.grpIntervalConfiguration.Controls.Add(this.lblNotificationInterval);
             this.grpIntervalConfiguration.Location = new System.Drawing.Point(20, 103);
             this.grpIntervalConfiguration.Name = "grpIntervalConfiguration";
-            this.grpIntervalConfiguration.Size = new System.Drawing.Size(665, 60);
+            this.grpIntervalConfiguration.Size = new System.Drawing.Size(521, 60);
             this.grpIntervalConfiguration.TabIndex = 6;
             this.grpIntervalConfiguration.TabStop = false;
             this.grpIntervalConfiguration.Text = "Interval Configuration";
@@ -64,14 +64,14 @@
             this.cmbIntervalType.Items.AddRange(new object[] {
             "hour",
             "minute"});
-            this.cmbIntervalType.Location = new System.Drawing.Point(177, 21);
+            this.cmbIntervalType.Location = new System.Drawing.Point(204, 26);
             this.cmbIntervalType.Name = "cmbIntervalType";
             this.cmbIntervalType.Size = new System.Drawing.Size(118, 21);
             this.cmbIntervalType.TabIndex = 11;
             // 
             // txtIntervalValue
             // 
-            this.txtIntervalValue.Location = new System.Drawing.Point(117, 21);
+            this.txtIntervalValue.Location = new System.Drawing.Point(144, 26);
             this.txtIntervalValue.Name = "txtIntervalValue";
             this.txtIntervalValue.Size = new System.Drawing.Size(54, 20);
             this.txtIntervalValue.TabIndex = 10;
@@ -81,9 +81,9 @@
             this.lblNotificationInterval.AutoSize = true;
             this.lblNotificationInterval.Location = new System.Drawing.Point(6, 29);
             this.lblNotificationInterval.Name = "lblNotificationInterval";
-            this.lblNotificationInterval.Size = new System.Drawing.Size(80, 13);
+            this.lblNotificationInterval.Size = new System.Drawing.Size(133, 13);
             this.lblNotificationInterval.TabIndex = 9;
-            this.lblNotificationInterval.Text = "Notify me every";
+            this.lblNotificationInterval.Text = "Check and notify me every";
             // 
             // txtCollection
             // 
@@ -118,7 +118,7 @@
             this.grpMonitorType.Controls.Add(this.rdMonitorInterval);
             this.grpMonitorType.Location = new System.Drawing.Point(20, 51);
             this.grpMonitorType.Name = "grpMonitorType";
-            this.grpMonitorType.Size = new System.Drawing.Size(669, 46);
+            this.grpMonitorType.Size = new System.Drawing.Size(521, 46);
             this.grpMonitorType.TabIndex = 12;
             this.grpMonitorType.TabStop = false;
             this.grpMonitorType.Text = "Monitor Type";
@@ -148,7 +148,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(270, 169);
+            this.btnSave.Location = new System.Drawing.Point(203, 169);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 15;
@@ -158,7 +158,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(351, 169);
+            this.btnCancel.Location = new System.Drawing.Point(284, 169);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 16;
@@ -170,7 +170,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(708, 200);
+            this.ClientSize = new System.Drawing.Size(558, 200);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.grpMonitorType);
