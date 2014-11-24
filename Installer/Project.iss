@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "TFS Checkout Notification"
-#define MyAppVersion "1.0.2.0"
+#define MyAppVersion "1.0.3.0"
 #define MyAppPublisher "Ricardo Serradas"
 #define MyAppURL "http://blog.ricardoserradas.net"
 #define MyAppExeName "TfsCheckoutNotification.exe"
