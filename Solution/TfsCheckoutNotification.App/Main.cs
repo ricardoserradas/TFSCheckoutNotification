@@ -85,19 +85,26 @@ namespace TfsCheckoutNotification.App
 
             if (!string.IsNullOrWhiteSpace(tpcUri))
             {
-                var tpc = new TfsTeamProjectCollection(new Uri(tpcUri));
-
-                var vcs = tpc.GetService<VersionControlServer>();
-
-                var workspaces = vcs.QueryWorkspaces(null, vcs.AuthorizedUser, Environment.MachineName);
-
-                if (!workspaces.Any()) return;
-
-                var totalPendingChanges = workspaces.Sum(workspace => workspace.GetPendingChanges().Count());
-
-                if (totalPendingChanges > 0 || showToastWhenZero)
+                try
                 {
-                    ShowToast(totalPendingChanges);
+                    var tpc = new TfsTeamProjectCollection(new Uri(tpcUri));
+
+                    var vcs = tpc.GetService<VersionControlServer>();
+
+                    var workspaces = vcs.QueryWorkspaces(null, vcs.AuthorizedUser, Environment.MachineName);
+
+                    if (!workspaces.Any()) return;
+
+                    var totalPendingChanges = workspaces.Sum(workspace => workspace.GetPendingChanges().Count());
+
+                    if (totalPendingChanges > 0 || showToastWhenZero)
+                    {
+                        ShowToast(totalPendingChanges);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ShowToast(0, "There was an error connecting to your Team Foundation Service. Check your connection.");
                 }
             }
             else
