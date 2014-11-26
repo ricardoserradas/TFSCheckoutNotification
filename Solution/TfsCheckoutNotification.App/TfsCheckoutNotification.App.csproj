@@ -65,6 +65,12 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="PendingChangesWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PendingChangesWindow.Designer.cs">
+      <DependentUpon>PendingChangesWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Configuration.resx">
@@ -72,6 +78,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PendingChangesWindow.resx">
+      <DependentUpon>PendingChangesWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -102,6 +111,12 @@
     <Content Include="Icons\icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TfsCheckoutNotification.Model\TfsCheckoutNotification.Model.csproj">
+      <Project>{f309fd3d-572f-4f53-bce9-abef0986f36a}</Project>
+      <Name>TfsCheckoutNotification.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

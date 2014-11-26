@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using Microsoft.TeamFoundation.VersionControl.Client;
 using Microsoft.TeamFoundation.Client;
 using System.Diagnostics;
+using model = TfsCheckoutNotification.Model;
 
 namespace TfsCheckoutNotification.App
 {
@@ -28,9 +31,18 @@ namespace TfsCheckoutNotification.App
                 Properties.Settings.Default.Save();
             }
         }
+
+        private readonly List<model.PendingChange> _pendingChanges;
+
+        public List<model.PendingChange> PendingChanges
+        {
+            get { return this._pendingChanges; }
+        }
         
         public Main()
         {
+            this._pendingChanges = new List<model.PendingChange>();
+
             InitializeComponent();
 
             QueryPendingChanges();
@@ -81,6 +93,8 @@ namespace TfsCheckoutNotification.App
 
         private void QueryPendingChanges(bool showToastWhenZero = false)
         {
+            this._pendingChanges.Clear();
+            
             var tpcUri = Properties.Settings.Default["CurrentCollection"].ToString();
 
             if (!string.IsNullOrWhiteSpace(tpcUri))
@@ -95,11 +109,14 @@ namespace TfsCheckoutNotification.App
 
                     if (!workspaces.Any()) return;
 
-                    var totalPendingChanges = workspaces.Sum(workspace => workspace.GetPendingChanges().Count());
-
-                    if (totalPendingChanges > 0 || showToastWhenZero)
+                    foreach (var workspace in workspaces)
                     {
-                        ShowToast(totalPendingChanges);
+                        this._pendingChanges.AddRange(this.ConvertPendingChangeToViewModel(workspace.GetPendingChanges()));
+                    }
+
+                    if (this.PendingChanges.Count > 0 || showToastWhenZero)
+                    {
+                        ShowToast(this.PendingChanges.Count);
                     }
                 }
                 catch (Exception ex)
@@ -113,11 +130,29 @@ namespace TfsCheckoutNotification.App
             }
         }
 
+        private IEnumerable<model.PendingChange> ConvertPendingChangeToViewModel(IEnumerable<PendingChange> pendingChanges)
+        {
+            return pendingChanges.Select(pendingChange => new model.PendingChange
+            {
+                ServerPath = pendingChange.ServerItem
+            });
+        }
+
         private void ShowToast(int totalPendingChanges, string message = "")
         {
+            var pendingChangesWindow = (PendingChangesWindow) Application.OpenForms["PendingChangesWindow"];
+
+            if (pendingChangesWindow != null) return;
+
             this.notifyIcon.BalloonTipIcon = string.IsNullOrWhiteSpace(message) ? ToolTipIcon.Info : ToolTipIcon.Warning;
             this.notifyIcon.BalloonTipText = string.Format(string.IsNullOrWhiteSpace(message) ? "You have {0} pending change(s)" : message, totalPendingChanges == 0 ? "no" : totalPendingChanges.ToString(CultureInfo.InvariantCulture));
             this.notifyIcon.ShowBalloonTip(3);
+        }
+
+        public void notifyIcon_BalloonTipClicked(object sender, EventArgs e)
+        {
+            var pendinChangesWindow = new PendingChangesWindow();
+            pendinChangesWindow.Show();
         }
 
         public void ConfigureTimer()
