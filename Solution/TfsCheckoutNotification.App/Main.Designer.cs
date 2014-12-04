@@ -36,6 +36,8 @@
             this.menu_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.timer_checkInterval = new System.Windows.Forms.Timer(this.components);
             this.timer_toast = new System.Windows.Forms.Timer(this.components);
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menu_showPendingChanges = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,22 +54,24 @@
             // contextMenu
             // 
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_showPendingChanges,
+            this.toolStripSeparator1,
             this.menu_Configure,
             this.menu_Exit});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(128, 48);
+            this.contextMenu.Size = new System.Drawing.Size(209, 98);
             // 
             // menu_Configure
             // 
             this.menu_Configure.Name = "menu_Configure";
-            this.menu_Configure.Size = new System.Drawing.Size(127, 22);
+            this.menu_Configure.Size = new System.Drawing.Size(208, 22);
             this.menu_Configure.Text = "Configure";
             this.menu_Configure.Click += new System.EventHandler(this.menu_Configure_Click);
             // 
             // menu_Exit
             // 
             this.menu_Exit.Name = "menu_Exit";
-            this.menu_Exit.Size = new System.Drawing.Size(127, 22);
+            this.menu_Exit.Size = new System.Drawing.Size(208, 22);
             this.menu_Exit.Text = "Exit";
             this.menu_Exit.Click += new System.EventHandler(this.menu_Exit_Click);
             // 
@@ -80,6 +84,18 @@
             // 
             this.timer_toast.Enabled = true;
             this.timer_toast.Tick += new System.EventHandler(this.timer_toast_Tick);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(205, 6);
+            // 
+            // menu_showPendingChanges
+            // 
+            this.menu_showPendingChanges.Name = "menu_showPendingChanges";
+            this.menu_showPendingChanges.Size = new System.Drawing.Size(208, 22);
+            this.menu_showPendingChanges.Text = "Show Pending Changes...";
+            this.menu_showPendingChanges.Click += new System.EventHandler(this.menu_showPendingChanges_Click);
             // 
             // Main
             // 
@@ -105,6 +121,8 @@
         private System.Windows.Forms.ToolStripMenuItem menu_Exit;
         private System.Windows.Forms.Timer timer_checkInterval;
         private System.Windows.Forms.Timer timer_toast;
+        private System.Windows.Forms.ToolStripMenuItem menu_showPendingChanges;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

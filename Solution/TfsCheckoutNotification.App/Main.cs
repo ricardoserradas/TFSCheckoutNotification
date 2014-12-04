@@ -13,20 +13,26 @@ namespace TfsCheckoutNotification.App
 {
     public partial class Main : Form
     {
-        private bool VisualStudioWasOpened{
-            get{
+        private bool VisualStudioWasOpened
+        {
+            get
+            {
                 return (bool)Properties.Settings.Default["VisualStudioWasOpened"];
             }
-            set{
+            set
+            {
                 Properties.Settings.Default["VisualStudioWasOpened"] = value;
                 Properties.Settings.Default.Save();
             }
         }
-        private bool VisualStudioWasClosed{
-            get{
+        private bool VisualStudioWasClosed
+        {
+            get
+            {
                 return (bool)Properties.Settings.Default["VisualStudioWasClosed"];
             }
-            set{
+            set
+            {
                 Properties.Settings.Default["VisualStudioWasClosed"] = value;
                 Properties.Settings.Default.Save();
             }
@@ -38,7 +44,7 @@ namespace TfsCheckoutNotification.App
         {
             get { return this._pendingChanges; }
         }
-        
+
         public Main()
         {
             this._pendingChanges = new List<model.PendingChange>();
@@ -78,7 +84,7 @@ namespace TfsCheckoutNotification.App
 
                 timer_toast.Start();
             }
-            else if(this.VisualStudioWasOpened && !this.VisualStudioWasClosed && timer_toast.Enabled)
+            else if (this.VisualStudioWasOpened && !this.VisualStudioWasClosed && timer_toast.Enabled)
             {
                 timer_toast.Stop();
             }
@@ -91,42 +97,53 @@ namespace TfsCheckoutNotification.App
             this.QueryPendingChanges();
         }
 
-        private void QueryPendingChanges(bool showToastWhenZero = false)
+        public VersionControlServer GetVersionControlServer()
         {
-            this._pendingChanges.Clear();
-            
             var tpcUri = Properties.Settings.Default["CurrentCollection"].ToString();
 
-            if (!string.IsNullOrWhiteSpace(tpcUri))
+            if (string.IsNullOrWhiteSpace(tpcUri))
             {
-                try
+                throw new ArgumentNullException("You must specify the collection to monitor.");
+            }
+
+            if (string.IsNullOrWhiteSpace(tpcUri)) return null;
+
+            var tpc = new TfsTeamProjectCollection(new Uri(tpcUri));
+
+            var vcs = tpc.GetService<VersionControlServer>();
+
+            return vcs;
+        }
+
+        public void QueryPendingChanges(bool showToastWhenZero = false)
+        {
+            this._pendingChanges.Clear();
+
+            try
+            {
+                var vcs = this.GetVersionControlServer();
+
+                var workspaces = vcs.QueryWorkspaces(null, vcs.AuthorizedUser, Environment.MachineName);
+
+                if (!workspaces.Any()) return;
+
+                foreach (var workspace in workspaces)
                 {
-                    var tpc = new TfsTeamProjectCollection(new Uri(tpcUri));
-
-                    var vcs = tpc.GetService<VersionControlServer>();
-
-                    var workspaces = vcs.QueryWorkspaces(null, vcs.AuthorizedUser, Environment.MachineName);
-
-                    if (!workspaces.Any()) return;
-
-                    foreach (var workspace in workspaces)
-                    {
-                        this._pendingChanges.AddRange(this.ConvertPendingChangeToViewModel(workspace.GetPendingChanges()));
-                    }
-
-                    if (this.PendingChanges.Count > 0 || showToastWhenZero)
-                    {
-                        ShowToast(this.PendingChanges.Count);
-                    }
+                    this._pendingChanges.AddRange(this.ConvertPendingChangeToViewModel(workspace.GetPendingChanges()));
                 }
-                catch (Exception ex)
+
+                if (this.PendingChanges.Count > 0 || showToastWhenZero)
                 {
-                    ShowToast(0, "There was an error connecting to your Team Foundation Service. Check your connection.");
+                    ShowToast(this.PendingChanges.Count);
                 }
             }
-            else
+            catch (ArgumentNullException ex)
             {
-                this.ShowToast(0, "You must specify the collection to monitor.");
+                this.ShowToast(0, ex.Message);
+            }
+            catch (Exception)
+            {
+                this.ShowToast(0, "There was an error connecting to your Team Foundation Service. Check your connection.");
             }
         }
 
@@ -140,7 +157,7 @@ namespace TfsCheckoutNotification.App
 
         private void ShowToast(int totalPendingChanges, string message = "")
         {
-            var pendingChangesWindow = (PendingChangesWindow) Application.OpenForms["PendingChangesWindow"];
+            var pendingChangesWindow = (PendingChangesWindow)Application.OpenForms["PendingChangesWindow"];
 
             if (pendingChangesWindow != null) return;
 
@@ -151,8 +168,24 @@ namespace TfsCheckoutNotification.App
 
         public void notifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
-            var pendinChangesWindow = new PendingChangesWindow();
-            pendinChangesWindow.Show();
+            ShowPendingChangesWindow();
+        }
+
+        private static void ShowPendingChangesWindow()
+        {
+            var pendingChangesWindow = (PendingChangesWindow)Application.OpenForms["PendingChangesWindow"];
+
+            if (pendingChangesWindow == null)
+            {
+                var pendinChangesWindow = new PendingChangesWindow();
+                pendinChangesWindow.Show();
+            }
+            else
+            {
+                pendingChangesWindow.Focus();
+            }
+            
+            
         }
 
         public void ConfigureTimer()
@@ -190,7 +223,7 @@ namespace TfsCheckoutNotification.App
                     this.VisualStudioWasOpened = false;
                     this.VisualStudioWasClosed = false;
                     timer_checkInterval.Start();
-                } 
+                }
             }
             else
             {
@@ -203,7 +236,7 @@ namespace TfsCheckoutNotification.App
             var processes = Process.GetProcessesByName("devenv");
 
             if (!processes.Any()) return;
-            
+
             this.VisualStudioWasOpened = true;
             this.VisualStudioWasClosed = false;
             timer_checkInterval.Interval = 1000;
@@ -212,13 +245,18 @@ namespace TfsCheckoutNotification.App
         private void CheckVisualStudioClosed()
         {
             if (!this.VisualStudioWasOpened) return;
-            
+
             var processes = Process.GetProcessesByName("devenv");
 
             if (!processes.Any())
             {
                 this.VisualStudioWasClosed = true;
             }
+        }
+
+        private void menu_showPendingChanges_Click(object sender, EventArgs e)
+        {
+            ShowPendingChangesWindow();
         }
     }
 }
