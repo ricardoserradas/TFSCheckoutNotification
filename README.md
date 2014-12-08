@@ -28,3 +28,14 @@ You basically need to configure 2 things:
 * The way the app will notify you:
     * By Interval: You decide the interval the App will check for pending changes and show the toast;
     * When Visual Studio closes: if you usually close your Visual Studio at the end of the work, this will probably be more useful and less annoying. It will show you a toast only after Visual Studio closes, every 10 minutes, only if you forget any checkout.
+
+Version 1.1
+=======================
+This new version comes with these cool new stuff:
+* Show Pending Changes window: With this new window you can:
+	* View your pending changes;
+	* Check-in all or selected ones. Here, if any of your pending changes belong to a Team Project with **Check-in policies**, they will be **all overriden. Be careful**;
+	* Undo all or selected ones;
+	* Added a shortcut to this window to the context menu and in the balloon notification click.
+* Log implementation
+	* Now, everytime an exception occurs in this app, you can check the Windows Event Log (Run > eventvwr.msc) for further details;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace TfsCheckoutNotification.App
 {
     public partial class Main : Form
     {
-        private bool VisualStudioWasOpened
+        private static bool VisualStudioWasOpened
         {
             get
             {
@@ -25,7 +24,7 @@ namespace TfsCheckoutNotification.App
                 Properties.Settings.Default.Save();
             }
         }
-        private bool VisualStudioWasClosed
+        private static bool VisualStudioWasClosed
         {
             get
             {
@@ -47,13 +46,20 @@ namespace TfsCheckoutNotification.App
 
         public Main()
         {
-            this._pendingChanges = new List<model.PendingChange>();
+            try
+            {
+                this._pendingChanges = new List<model.PendingChange>();
 
-            InitializeComponent();
+                InitializeComponent();
 
-            QueryPendingChanges();
+                QueryPendingChanges();
 
-            ConfigureTimer();
+                ConfigureTimer();
+            }
+            catch (Exception exception)
+            {
+                Common.TreatUnexpectedException(exception, this);
+            }
         }
 
         private void menu_Exit_Click(object sender, EventArgs e)
@@ -70,26 +76,33 @@ namespace TfsCheckoutNotification.App
 
         private void timer_checkInterval_Tick(object sender, EventArgs e)
         {
-            timer_checkInterval.Stop();
-
-            this.CheckVisualStudioOpened();
-            this.CheckVisualStudioClosed();
-
-            if (this.VisualStudioWasOpened && this.VisualStudioWasClosed && !timer_toast.Enabled)
+            try
             {
-                timer_toast.Interval = 5000; // after visual studio closes with pending checkins, it notifies the user every 1 minutes.
+                timer_checkInterval.Stop();
 
-                this.VisualStudioWasOpened = false;
-                this.VisualStudioWasClosed = false;
+                this.CheckVisualStudioOpened();
+                this.CheckVisualStudioClosed();
 
-                timer_toast.Start();
+                if (VisualStudioWasOpened && VisualStudioWasClosed && !timer_toast.Enabled)
+                {
+                    timer_toast.Interval = 5000; // after visual studio closes with pending checkins, it notifies the user every 1 minutes.
+
+                    VisualStudioWasOpened = false;
+                    VisualStudioWasClosed = false;
+
+                    timer_toast.Start();
+                }
+                else if (VisualStudioWasOpened && !VisualStudioWasClosed && timer_toast.Enabled)
+                {
+                    timer_toast.Stop();
+                }
+
+                timer_checkInterval.Start();
             }
-            else if (this.VisualStudioWasOpened && !this.VisualStudioWasClosed && timer_toast.Enabled)
+            catch (Exception exception)
             {
-                timer_toast.Stop();
+                Common.TreatUnexpectedException(exception, this);
             }
-
-            timer_checkInterval.Start();
         }
 
         private void timer_toast_Tick(object sender, EventArgs e)
@@ -139,10 +152,12 @@ namespace TfsCheckoutNotification.App
             }
             catch (ArgumentNullException ex)
             {
+                EventLog.WriteEntry(Common.EventLogSource, ex.Message, EventLogEntryType.Error);
                 this.ShowToast(0, ex.Message);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                EventLog.WriteEntry(Common.EventLogSource, exception.Message, EventLogEntryType.Error);
                 this.ShowToast(0, "There was an error connecting to your Team Foundation Service. Check your connection.");
             }
         }
@@ -168,21 +183,28 @@ namespace TfsCheckoutNotification.App
 
         public void notifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
-            ShowPendingChangesWindow();
+            this.ShowPendingChangesWindow();
         }
 
-        private static void ShowPendingChangesWindow()
+        private void ShowPendingChangesWindow()
         {
-            var pendingChangesWindow = (PendingChangesWindow)Application.OpenForms["PendingChangesWindow"];
+            try
+            {
+                var pendingChangesWindow = (PendingChangesWindow)Application.OpenForms["PendingChangesWindow"];
 
-            if (pendingChangesWindow == null)
-            {
-                var pendinChangesWindow = new PendingChangesWindow();
-                pendinChangesWindow.Show();
+                if (pendingChangesWindow == null)
+                {
+                    var pendinChangesWindow = new PendingChangesWindow();
+                    pendinChangesWindow.Show();
+                }
+                else
+                {
+                    pendingChangesWindow.Focus();
+                }
             }
-            else
+            catch (Exception exception)
             {
-                pendingChangesWindow.Focus();
+                Common.TreatUnexpectedException(exception, this);
             }
             
             
@@ -190,73 +212,94 @@ namespace TfsCheckoutNotification.App
 
         public void ConfigureTimer()
         {
-            timer_checkInterval.Stop();
-            timer_toast.Stop();
-
-            var collection = Properties.Settings.Default["CurrentCollection"].ToString();
-
-            if (!string.IsNullOrWhiteSpace(collection))
+            try
             {
-                var isIntervalMonitorType = (bool)Properties.Settings.Default["IsIntervalMonitorType"];
+                timer_checkInterval.Stop();
+                timer_toast.Stop();
 
-                if (isIntervalMonitorType)
+                var collection = Properties.Settings.Default["CurrentCollection"].ToString();
+
+                if (!string.IsNullOrWhiteSpace(collection))
                 {
-                    var intervalValue = (int)Properties.Settings.Default["IntervalValue"];
-                    var intervalType = Properties.Settings.Default["IntervalType"].ToString();
-                    int interval;
+                    var isIntervalMonitorType = (bool)Properties.Settings.Default["IsIntervalMonitorType"];
 
-                    if (intervalType.Equals("minute"))
+                    if (isIntervalMonitorType)
                     {
-                        interval = intervalValue * 60000;
+                        var intervalValue = (int)Properties.Settings.Default["IntervalValue"];
+                        var intervalType = Properties.Settings.Default["IntervalType"].ToString();
+                        int interval;
+
+                        if (intervalType.Equals("minute"))
+                        {
+                            interval = intervalValue * 60000;
+                        }
+                        else
+                        {
+                            interval = intervalValue * 3600000;
+                        }
+
+                        timer_toast.Interval = interval;
+                        timer_toast.Start();
                     }
                     else
                     {
-                        interval = intervalValue * 3600000;
+                        timer_checkInterval.Interval = 600000; // If the user has pending changes and closes visual studio, he will be notified every 10 minutes.
+                        VisualStudioWasOpened = false;
+                        VisualStudioWasClosed = false;
+                        timer_checkInterval.Start();
                     }
-
-                    timer_toast.Interval = interval;
-                    timer_toast.Start();
                 }
                 else
                 {
-                    timer_checkInterval.Interval = 600000; // If the user has pending changes and closes visual studio, he will be notified every 10 minutes.
-                    this.VisualStudioWasOpened = false;
-                    this.VisualStudioWasClosed = false;
-                    timer_checkInterval.Start();
+                    this.ShowToast(0, "You must specify the collection to monitor.");
                 }
             }
-            else
+            catch (Exception exception)
             {
-                this.ShowToast(0, "You must specify the collection to monitor.");
+                Common.TreatUnexpectedException(exception, this);
             }
         }
 
         private void CheckVisualStudioOpened()
         {
-            var processes = Process.GetProcessesByName("devenv");
+            try
+            {
+                var processes = Process.GetProcessesByName("devenv");
 
-            if (!processes.Any()) return;
+                if (!processes.Any()) return;
 
-            this.VisualStudioWasOpened = true;
-            this.VisualStudioWasClosed = false;
-            timer_checkInterval.Interval = 1000;
+                VisualStudioWasOpened = true;
+                VisualStudioWasClosed = false;
+                timer_checkInterval.Interval = 1000;
+            }
+            catch (Exception exception)
+            {
+                Common.TreatUnexpectedException(exception, this);
+            }
         }
 
         private void CheckVisualStudioClosed()
         {
-            if (!this.VisualStudioWasOpened) return;
-
-            var processes = Process.GetProcessesByName("devenv");
-
-            if (!processes.Any())
+            try
             {
-                this.VisualStudioWasClosed = true;
+                if (!VisualStudioWasOpened) return;
+
+                var processes = Process.GetProcessesByName("devenv");
+
+                if (!processes.Any())
+                {
+                    VisualStudioWasClosed = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                Common.TreatUnexpectedException(exception, this);
             }
         }
 
         private void menu_showPendingChanges_Click(object sender, EventArgs e)
         {
-            ShowPendingChangesWindow();
+            this.ShowPendingChangesWindow();
         }
     }
 }
