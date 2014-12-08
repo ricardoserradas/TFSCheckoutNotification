@@ -116,7 +116,7 @@ namespace TfsCheckoutNotification.App
 
             if (string.IsNullOrWhiteSpace(tpcUri))
             {
-                throw new ArgumentNullException("You must specify the collection to monitor.");
+                throw new ArgumentNullException("CollectionURI", "You must specify the collection to monitor.");
             }
 
             if (string.IsNullOrWhiteSpace(tpcUri)) return null;
@@ -170,11 +170,13 @@ namespace TfsCheckoutNotification.App
             });
         }
 
-        private void ShowToast(int totalPendingChanges, string message = "")
+        private void ShowToast(int totalPendingChanges, string message = "", bool showConfiguration = false)
         {
             var pendingChangesWindow = (PendingChangesWindow)Application.OpenForms["PendingChangesWindow"];
 
             if (pendingChangesWindow != null) return;
+
+            this.notifyIcon.Tag = showConfiguration;
 
             this.notifyIcon.BalloonTipIcon = string.IsNullOrWhiteSpace(message) ? ToolTipIcon.Info : ToolTipIcon.Warning;
             this.notifyIcon.BalloonTipText = string.Format(string.IsNullOrWhiteSpace(message) ? "You have {0} pending change(s)" : message, totalPendingChanges == 0 ? "no" : totalPendingChanges.ToString(CultureInfo.InvariantCulture));
@@ -183,7 +185,38 @@ namespace TfsCheckoutNotification.App
 
         public void notifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
-            this.ShowPendingChangesWindow();
+            var balloon = (NotifyIcon) sender;
+
+            if (bool.Parse(balloon.Tag.ToString()))
+            {
+                this.ShowConfigurationWindow();
+            }
+            else
+            {
+                this.ShowPendingChangesWindow();
+            }
+        }
+
+        private void ShowConfigurationWindow()
+        {
+            try
+            {
+                var configurationWindow = (Configuration)Application.OpenForms["Configuration"];
+
+                if (configurationWindow == null)
+                {
+                    var pendinChangesWindow = new Configuration();
+                    pendinChangesWindow.Show();
+                }
+                else
+                {
+                    configurationWindow.Focus();
+                }
+            }
+            catch (Exception exception)
+            {
+                Common.TreatUnexpectedException(exception, this);
+            }
         }
 
         private void ShowPendingChangesWindow()
@@ -206,8 +239,6 @@ namespace TfsCheckoutNotification.App
             {
                 Common.TreatUnexpectedException(exception, this);
             }
-            
-            
         }
 
         public void ConfigureTimer()
@@ -251,7 +282,7 @@ namespace TfsCheckoutNotification.App
                 }
                 else
                 {
-                    this.ShowToast(0, "You must specify the collection to monitor.");
+                    this.ShowToast(0, "You must specify the collection to monitor.", true);
                 }
             }
             catch (Exception exception)

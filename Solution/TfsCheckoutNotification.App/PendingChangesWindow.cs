@@ -38,7 +38,7 @@ namespace TfsCheckoutNotification.App
             {
                 lstPendingChanges.Items.Clear();
 
-                lstPendingChanges.Items.Add("(Select  All)");
+                lstPendingChanges.Items.Add("(Select All)");
 
                 foreach (var pendingChange in this._mainForm.PendingChanges)
                 {
@@ -124,8 +124,7 @@ namespace TfsCheckoutNotification.App
                             : new PolicyOverrideInfo("Check-in made by TFS Checkout Notification",
                                 evaluationResult.PolicyFailures));
 
-                    this._mainForm.QueryPendingChanges(true);
-                    this.PopulatePendingChangesList();
+                    this.RefreshPendingChanges();
                 }
             }
             catch (Exception exception)
@@ -136,10 +135,17 @@ namespace TfsCheckoutNotification.App
 
         private void lstPendingChanges_SelectedValueChanged(object sender, System.EventArgs e)
         {
+            CheckButtonsState();
+        }
+
+        private void CheckButtonsState()
+        {
             try
             {
-                btnCheckin.Enabled = lstPendingChanges.CheckedItems.Count > 1;
-                btnUndo.Enabled = lstPendingChanges.CheckedItems.Count > 1;
+                var hasToCheck = lstPendingChanges.CheckedItems.Count >= 1 && lstPendingChanges.Items.Count > 1;
+
+                btnCheckin.Enabled = hasToCheck;
+                btnUndo.Enabled = hasToCheck;
             }
             catch (Exception exception)
             {
@@ -183,14 +189,31 @@ namespace TfsCheckoutNotification.App
 
                     workspace.Undo(workspacePendingChanges);
 
-                    this._mainForm.QueryPendingChanges(true);
-                    this.PopulatePendingChangesList();
+                    this.RefreshPendingChanges();
                 }
             }
             catch (Exception exception)
             {
                 Common.TreatUnexpectedException(exception, this);
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            this.RefreshPendingChanges();
+        }
+
+        private void RefreshPendingChanges()
+        {
+            this._mainForm.QueryPendingChanges(true);
+            this.PopulatePendingChangesList();
+
+            this.CheckButtonsState();
+        }
+
+        private void lstPendingChanges_DoubleClick(object sender, EventArgs e)
+        {
+            this.CheckButtonsState();
         }
     }
 }

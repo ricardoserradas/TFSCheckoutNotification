@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "TFS Checkout Notification"
-#define MyAppVersion "1.0.3.0"
+#define MyAppVersion "1.1.0.0"
 #define MyAppPublisher "Ricardo Serradas"
 #define MyAppURL "http://blog.ricardoserradas.net"
 #define MyAppExeName "TfsCheckoutNotification.exe"
@@ -33,12 +33,11 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
 Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.Model.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.VersionControl.Client.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Microsoft.WITDataStore.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\System.Net.Http.Formatting.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\System.Web.Http.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\TfsCheckoutNotification.exe.config"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Solution\TfsCheckoutNotification.App\bin\Debug\Icons\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files

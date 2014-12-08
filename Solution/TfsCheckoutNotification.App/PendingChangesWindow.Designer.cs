@@ -33,6 +33,7 @@
             this.lblPendingChanges = new System.Windows.Forms.Label();
             this.btnCheckin = new System.Windows.Forms.Button();
             this.btnUndo = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstPendingChanges
@@ -45,6 +46,7 @@
             this.lstPendingChanges.TabIndex = 0;
             this.lstPendingChanges.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lstPendingChanges_ItemCheck);
             this.lstPendingChanges.SelectedValueChanged += new System.EventHandler(this.lstPendingChanges_SelectedValueChanged);
+            this.lstPendingChanges.DoubleClick += new System.EventHandler(this.lstPendingChanges_DoubleClick);
             // 
             // lblPendingChanges
             // 
@@ -77,11 +79,22 @@
             this.btnUndo.UseVisualStyleBackColor = true;
             this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(716, 85);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 4;
+            this.btnRefresh.Text = "Refesh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // PendingChangesWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 274);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnUndo);
             this.Controls.Add(this.btnCheckin);
             this.Controls.Add(this.lblPendingChanges);
@@ -103,5 +116,6 @@
         private System.Windows.Forms.Label lblPendingChanges;
         private System.Windows.Forms.Button btnCheckin;
         private System.Windows.Forms.Button btnUndo;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
