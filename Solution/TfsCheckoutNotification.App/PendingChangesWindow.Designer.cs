@@ -38,73 +38,53 @@
             // 
             // lstPendingChanges
             // 
+            resources.ApplyResources(this.lstPendingChanges, "lstPendingChanges");
             this.lstPendingChanges.CheckOnClick = true;
             this.lstPendingChanges.FormattingEnabled = true;
-            this.lstPendingChanges.Location = new System.Drawing.Point(12, 27);
             this.lstPendingChanges.Name = "lstPendingChanges";
-            this.lstPendingChanges.Size = new System.Drawing.Size(698, 229);
-            this.lstPendingChanges.TabIndex = 0;
             this.lstPendingChanges.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lstPendingChanges_ItemCheck);
             this.lstPendingChanges.SelectedValueChanged += new System.EventHandler(this.lstPendingChanges_SelectedValueChanged);
             this.lstPendingChanges.DoubleClick += new System.EventHandler(this.lstPendingChanges_DoubleClick);
             // 
             // lblPendingChanges
             // 
-            this.lblPendingChanges.AutoSize = true;
-            this.lblPendingChanges.Location = new System.Drawing.Point(12, 9);
+            resources.ApplyResources(this.lblPendingChanges, "lblPendingChanges");
             this.lblPendingChanges.Name = "lblPendingChanges";
-            this.lblPendingChanges.Size = new System.Drawing.Size(171, 13);
-            this.lblPendingChanges.TabIndex = 1;
-            this.lblPendingChanges.Text = "All your pending changes are here:";
             // 
             // btnCheckin
             // 
-            this.btnCheckin.Enabled = false;
-            this.btnCheckin.Location = new System.Drawing.Point(716, 27);
+            resources.ApplyResources(this.btnCheckin, "btnCheckin");
             this.btnCheckin.Name = "btnCheckin";
-            this.btnCheckin.Size = new System.Drawing.Size(75, 23);
-            this.btnCheckin.TabIndex = 2;
-            this.btnCheckin.Text = "Check In";
             this.btnCheckin.UseVisualStyleBackColor = true;
             this.btnCheckin.Click += new System.EventHandler(this.btnCheckin_Click);
             // 
             // btnUndo
             // 
-            this.btnUndo.Enabled = false;
-            this.btnUndo.Location = new System.Drawing.Point(716, 56);
+            resources.ApplyResources(this.btnUndo, "btnUndo");
             this.btnUndo.Name = "btnUndo";
-            this.btnUndo.Size = new System.Drawing.Size(75, 23);
-            this.btnUndo.TabIndex = 3;
-            this.btnUndo.Text = "Undo";
             this.btnUndo.UseVisualStyleBackColor = true;
             this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(716, 85);
+            resources.ApplyResources(this.btnRefresh, "btnRefresh");
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
-            this.btnRefresh.TabIndex = 4;
-            this.btnRefresh.Text = "Refesh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // PendingChangesWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 274);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnUndo);
             this.Controls.Add(this.btnCheckin);
             this.Controls.Add(this.lblPendingChanges);
             this.Controls.Add(this.lstPendingChanges);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PendingChangesWindow";
-            this.Text = "TFS Checkout Notification - Pending Changes";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
+using System.Threading;
 using System.Windows.Forms;
 using Microsoft.TeamFoundation.VersionControl.Client;
 
@@ -12,6 +15,8 @@ namespace TfsCheckoutNotification.App
         
         public PendingChangesWindow()
         {
+            
+
             try
             {
                 InitializeComponent();
@@ -20,7 +25,7 @@ namespace TfsCheckoutNotification.App
 
                 if (this._mainForm == null)
                 {
-                    MessageBox.Show("There was an error loading the app information. Closing...");
+                    MessageBox.Show(Main.ResourceManager.GetString("PendingChanges_ErrorLoadingInfo"));
                     this.Close();
                 }
 
@@ -45,8 +50,10 @@ namespace TfsCheckoutNotification.App
                     lstPendingChanges.Items.Add(pendingChange.ServerPath);
                 }
 
-                lblPendingChanges.Text = string.Format("All your {0} pending changes are here:",
-                    lstPendingChanges.Items.Count - 1);
+                lblPendingChanges.Text = (lstPendingChanges.Items.Count - 1) == 0
+                    ? Main.ResourceManager.GetString("PendingChanges_AllYourPendingChangesEmpty")
+                    : string.Format(Main.ResourceManager.GetString("PendingChanges_AllYourPendingChanges"),
+                        lstPendingChanges.Items.Count - 1);
             }
             catch (Exception exception)
             {
@@ -76,8 +83,8 @@ namespace TfsCheckoutNotification.App
             {
                 if (
                         MessageBox.Show(
-                            "Are you sure you want to check in all the selected items?\r\n\r\nIf there's a check in policy for any of these pending changes, it will be overwritten.",
-                            "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                            Main.ResourceManager.GetString("PendingChanges_CheckInConfirmation"),
+                            Main.ResourceManager.GetString("PendingChange_ConfirmationTitle"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     try
                     {
@@ -87,7 +94,7 @@ namespace TfsCheckoutNotification.App
                     }
                     catch (Exception exception)
                     {
-                        MessageBox.Show(string.Format("There was an error checking in your changes:\r\n\r\n {0}", exception.Message), "Error commiting changes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(string.Format(Main.ResourceManager.GetString("PendingChange_ErrorCheckingIn"), exception.Message), Main.ResourceManager.GetString("PendingChange_ErrorCheckingInTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -116,12 +123,12 @@ namespace TfsCheckoutNotification.App
                             x => serverPaths.Contains(x.ServerItem)).ToArray();
 
                     var evaluationResult = workspace.EvaluateCheckin(CheckinEvaluationOptions.Policies, null, workspacePendingChanges,
-                        "Check-in made by TFS Checkout Notification", null, null);
+                        Main.ResourceManager.GetString("PendingChange_CheckInComment"), null, null);
 
-                    workspace.CheckIn(workspacePendingChanges, "Check-in made by TFS Checkout Notification", null, null,
+                    workspace.CheckIn(workspacePendingChanges, Main.ResourceManager.GetString("PendingChange_CheckInComment"), null, null,
                         !evaluationResult.PolicyFailures.Any()
                             ? null
-                            : new PolicyOverrideInfo("Check-in made by TFS Checkout Notification",
+                            : new PolicyOverrideInfo(Main.ResourceManager.GetString("PendingChange_CheckInComment"),
                                 evaluationResult.PolicyFailures));
 
                     this.RefreshPendingChanges();
@@ -155,7 +162,7 @@ namespace TfsCheckoutNotification.App
 
         private void btnUndo_Click(object sender, System.EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to undo all the selected items?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show(Main.ResourceManager.GetString("PendingChange_UndoConfirmation"), Main.ResourceManager.GetString("PendingChange_ConfirmationTitle"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 try
                 {
@@ -164,7 +171,7 @@ namespace TfsCheckoutNotification.App
                 catch (Exception exception)
                 {
                     EventLog.WriteEntry(Common.EventLogSource, exception.Message, EventLogEntryType.Error);
-                    MessageBox.Show(string.Format("There was an error undoing your changes: \r\n\r\n{0}", exception.Message), "Error undoing changes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(string.Format(Main.ResourceManager.GetString("PendingChange_ErrorUndoing"), exception.Message), Main.ResourceManager.GetString("PendingChanges_ErrorUndoingTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

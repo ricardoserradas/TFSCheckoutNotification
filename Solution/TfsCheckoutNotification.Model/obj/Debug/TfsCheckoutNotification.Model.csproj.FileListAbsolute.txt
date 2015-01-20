@@ -2,3 +2,4 @@ C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.Model\bin\Debu
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.Model\bin\Debug\TfsCheckoutNotification.Model.pdb
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.Model\obj\Debug\TfsCheckoutNotification.Model.dll
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.Model\obj\Debug\TfsCheckoutNotification.Model.pdb
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.Model\obj\Debug\TfsCheckoutNotification.Model.csprojResolveAssemblyReference.cache

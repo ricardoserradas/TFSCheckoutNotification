@@ -13,7 +13,13 @@ C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Configuration.resources
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Main.resources
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.PendingChangesWindow.resources
-C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Properties.Resources.resources
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.csproj.GenerateResource.Cache
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.exe
 C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.pdb
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\bin\Debug\pt-BR\TfsCheckoutNotification.resources.dll
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Configuration.pt-BR.resources
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Main.pt-BR.resources
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.PendingChangesWindow.pt-BR.resources
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\pt-BR\TfsCheckoutNotification.resources.dll
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Resources.resources
+C:\Repos\tfscheckoutnotification\Solution\TfsCheckoutNotification.App\obj\Debug\TfsCheckoutNotification.App.Resources.pt-BR.resources

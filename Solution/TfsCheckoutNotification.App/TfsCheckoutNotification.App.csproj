@@ -77,24 +77,35 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Configuration.pt-BR.resx">
+      <DependentUpon>Configuration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Configuration.resx">
       <DependentUpon>Configuration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.pt-BR.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PendingChangesWindow.pt-BR.resx">
+      <DependentUpon>PendingChangesWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PendingChangesWindow.resx">
       <DependentUpon>PendingChangesWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Resources.pt-BR.resx" />
     <None Include="..\..\README.md">
       <Link>README.md</Link>
     </None>

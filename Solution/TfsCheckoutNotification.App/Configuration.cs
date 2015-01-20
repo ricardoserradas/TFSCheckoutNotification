@@ -18,7 +18,7 @@ namespace TfsCheckoutNotification.App
             {
                 rdMonitorInterval.Checked = true;
                 txtIntervalValue.Text = Properties.Settings.Default["IntervalValue"].ToString();
-                cmbIntervalType.SelectedItem = Properties.Settings.Default["IntervalType"].ToString();
+                cmbIntervalType.SelectedItem = Get_UniversalIntervalType(Properties.Settings.Default["IntervalType"].ToString());
             }
             else
             {
@@ -52,7 +52,7 @@ namespace TfsCheckoutNotification.App
             if (rdMonitorInterval.Checked)
             {
                 Properties.Settings.Default["IntervalValue"] = int.Parse(txtIntervalValue.Text);
-                Properties.Settings.Default["IntervalType"] = cmbIntervalType.SelectedItem.ToString(); 
+                Properties.Settings.Default["IntervalType"] = Get_DefaultIntervalType(cmbIntervalType.SelectedItem.ToString()); 
             }
             Properties.Settings.Default.Save();
         }
@@ -61,7 +61,7 @@ namespace TfsCheckoutNotification.App
         {
             if (string.IsNullOrWhiteSpace(txtCollection.Text))
             {
-                MessageBox.Show("You must specify the collection to monitor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Main.ResourceManager.GetString("Main_SpecifyCollection"), Main.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 btnChangeCollection.Focus();
 
@@ -74,14 +74,14 @@ namespace TfsCheckoutNotification.App
                 
                 if (string.IsNullOrWhiteSpace(txtIntervalValue.Text))
                 {
-                    MessageBox.Show("You must set an interval.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Main.ResourceManager.GetString("Configuration_SetInterval"), Main.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtIntervalValue.Focus();
                     return;
                 }
                 
                 if (!int.TryParse(txtIntervalValue.Text, out tryResult))
                 {
-                    MessageBox.Show("The interval value must be an integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Main.ResourceManager.GetString("Configuration_IntervalInteger"), Main.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtIntervalValue.Text = string.Empty;
                     txtIntervalValue.Focus();
                     return;
@@ -89,7 +89,7 @@ namespace TfsCheckoutNotification.App
                 
                 if (cmbIntervalType.SelectedItem == null)
                 {
-                    MessageBox.Show("You must select the interval type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Main.ResourceManager.GetString("Configuration_IntervalType"), Main.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     cmbIntervalType.Focus();
                     return;
                 }
@@ -107,6 +107,35 @@ namespace TfsCheckoutNotification.App
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private string Get_DefaultIntervalType(string intervalInput)
+        {
+            if (intervalInput.Equals("hora(s)") || intervalInput.Equals("hour"))
+            {
+                return "hour";
+            }
+
+            if (intervalInput.Equals("minuto(s)") | intervalInput.Equals("minute"))
+            {
+                return "minute";
+            }
+
+            return null;
+        }
+        private string Get_UniversalIntervalType(string intervalInput)
+        {
+            if (intervalInput.Equals("hour"))
+            {
+                return Main.ResourceManager.GetString("Configuration_IntervalHour");
+            }
+
+            if (intervalInput.Equals("minute"))
+            {
+                return Main.ResourceManager.GetString("Configuration_IntervalMinute");
+            }
+
+            return null;
         }
     }
 }

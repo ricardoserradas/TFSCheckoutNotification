@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Resources;
+using System.Threading;
 using System.Windows.Forms;
 using Microsoft.TeamFoundation.VersionControl.Client;
 using Microsoft.TeamFoundation.Client;
@@ -44,10 +46,19 @@ namespace TfsCheckoutNotification.App
             get { return this._pendingChanges; }
         }
 
+        public static ResourceManager ResourceManager;
+
         public Main()
         {
             try
             {
+#if DEBUG
+                Thread.CurrentThread.CurrentUICulture = MessageBox.Show("Choose Yes for pt-BR or No for en-US", "Choose Language", MessageBoxButtons.YesNo) ==
+                                                        DialogResult.Yes ? new CultureInfo("pt-BR") : new CultureInfo("en-US");
+#endif
+
+                ResourceManager = new ResourceManager("TfsCheckoutNotification.App.Resources", this.GetType().Assembly);
+
                 this._pendingChanges = new List<model.PendingChange>();
 
                 InitializeComponent();
@@ -116,7 +127,7 @@ namespace TfsCheckoutNotification.App
 
             if (string.IsNullOrWhiteSpace(tpcUri))
             {
-                throw new ArgumentNullException("CollectionURI", "You must specify the collection to monitor.");
+                throw new ArgumentNullException("CollectionURI", ResourceManager.GetString("Main_SpecifyCollection"));
             }
 
             if (string.IsNullOrWhiteSpace(tpcUri)) return null;
@@ -158,7 +169,7 @@ namespace TfsCheckoutNotification.App
             catch (Exception exception)
             {
                 EventLog.WriteEntry(Common.EventLogSource, exception.Message, EventLogEntryType.Error);
-                this.ShowToast(0, "There was an error connecting to your Team Foundation Service. Check your connection.");
+                this.ShowToast(0, ResourceManager.GetString("Main_ErrorConnectTFS"));
             }
         }
 
@@ -179,7 +190,10 @@ namespace TfsCheckoutNotification.App
             this.notifyIcon.Tag = showConfiguration;
 
             this.notifyIcon.BalloonTipIcon = string.IsNullOrWhiteSpace(message) ? ToolTipIcon.Info : ToolTipIcon.Warning;
-            this.notifyIcon.BalloonTipText = string.Format(string.IsNullOrWhiteSpace(message) ? "You have {0} pending change(s)" : message, totalPendingChanges == 0 ? "no" : totalPendingChanges.ToString(CultureInfo.InvariantCulture));
+
+            this.notifyIcon.BalloonTipText = totalPendingChanges == 0
+                ? ResourceManager.GetString("Main_NoPendingChanges")
+                : string.Format(ResourceManager.GetString("Main_CountPendingChanges"), totalPendingChanges);
             this.notifyIcon.ShowBalloonTip(3);
         }
 
@@ -282,7 +296,7 @@ namespace TfsCheckoutNotification.App
                 }
                 else
                 {
-                    this.ShowToast(0, "You must specify the collection to monitor.", true);
+                    this.ShowToast(0, ResourceManager.GetString("Main_SpecifyCollection"), true);
                 }
             }
             catch (Exception exception)

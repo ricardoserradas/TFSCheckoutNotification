@@ -117,7 +117,134 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;btnCheckin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCheckin.Name" xml:space="preserve">
+    <value>btnCheckin</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnRefresh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;btnCheckin.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblPendingChanges.Text" xml:space="preserve">
+    <value>All your pending changes are here:</value>
+  </data>
+  <data name="&gt;&gt;lstPendingChanges.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnCheckin.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnUndo.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnRefresh.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblPendingChanges.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 9</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>PendingChangesWindow</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblPendingChanges.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;btnRefresh.Name" xml:space="preserve">
+    <value>btnRefresh</value>
+  </data>
+  <data name="btnCheckin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnUndo.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>827, 274</value>
+  </data>
+  <data name="lstPendingChanges.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="btnRefresh.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="btnUndo.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lblPendingChanges.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnUndo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="&gt;&gt;lblPendingChanges.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lstPendingChanges.Size" type="System.Drawing.Size, System.Drawing">
+    <value>698, 229</value>
+  </data>
+  <data name="btnUndo.Text" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="btnUndo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>716, 56</value>
+  </data>
+  <data name="lblPendingChanges.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnCheckin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>716, 27</value>
+  </data>
+  <data name="&gt;&gt;lblPendingChanges.Name" xml:space="preserve">
+    <value>lblPendingChanges</value>
+  </data>
+  <data name="&gt;&gt;btnUndo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnRefresh.Text" xml:space="preserve">
+    <value>Refesh</value>
+  </data>
+  <data name="&gt;&gt;lstPendingChanges.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblPendingChanges.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnRefresh.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="btnCheckin.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;lstPendingChanges.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lstPendingChanges.Name" xml:space="preserve">
+    <value>lstPendingChanges</value>
+  </data>
+  <data name="btnCheckin.Text" xml:space="preserve">
+    <value>Check In</value>
+  </data>
+  <data name="btnCheckin.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btnRefresh.Location" type="System.Drawing.Point, System.Drawing">
+    <value>716, 85</value>
+  </data>
+  <data name="&gt;&gt;btnUndo.Name" xml:space="preserve">
+    <value>btnUndo</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAAAAAAAEAIABcmwAAlgAAAICAAAABACAAKAgBAPKbAABgYAAAAQAgAKiUAAAapAEASEgAAAEA
@@ -3483,4 +3610,25 @@
         AADAAwAAwAEAAMABAACAAQAAgAAAAIAAAACAAAAAgAMAAIAHAADABwAA4A8AAPAfAAA=
 </value>
   </data>
+  <data name="lblPendingChanges.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 13</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>TFS Checkout Notification - Pending Changes</value>
+  </data>
+  <data name="lstPendingChanges.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 27</value>
+  </data>
+  <data name="&gt;&gt;btnUndo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnRefresh.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>pt-BR</value>
+  </metadata>
 </root>
