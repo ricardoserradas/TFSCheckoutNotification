@@ -55,6 +55,7 @@ namespace TfsCheckoutNotification.App
                                                         DialogResult.Yes ? new CultureInfo("pt-BR") : new CultureInfo("en-US");
 #endif
 
+
                 this._pendingChanges = new List<model.PendingChange>();
 
                 InitializeComponent();
@@ -123,7 +124,7 @@ namespace TfsCheckoutNotification.App
 
             if (string.IsNullOrWhiteSpace(tpcUri))
             {
-                throw new ArgumentNullException("CollectionURI", message: Common.ResourceManager.GetString("Main_SpecifyCollection"));
+                return null;
             }
 
             if (string.IsNullOrWhiteSpace(tpcUri)) return null;
@@ -143,6 +144,11 @@ namespace TfsCheckoutNotification.App
             {
                 var vcs = this.GetVersionControlServer();
 
+                if (vcs == null)
+                {
+                    return;
+                }
+
                 var workspaces = vcs.QueryWorkspaces(null, vcs.AuthorizedUser, Environment.MachineName);
 
                 if (!workspaces.Any()) return;
@@ -156,11 +162,6 @@ namespace TfsCheckoutNotification.App
                 {
                     ShowToast(this.PendingChanges.Count);
                 }
-            }
-            catch (ArgumentNullException ex)
-            {
-                EventLog.WriteEntry(Common.EventLogSource, ex.Message, EventLogEntryType.Error);
-                this.ShowToast(0, ex.Message);
             }
             catch (Exception exception)
             {
@@ -187,9 +188,17 @@ namespace TfsCheckoutNotification.App
 
             this.notifyIcon.BalloonTipIcon = string.IsNullOrWhiteSpace(message) ? ToolTipIcon.Info : ToolTipIcon.Warning;
 
-            this.notifyIcon.BalloonTipText = totalPendingChanges == 0
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                this.notifyIcon.BalloonTipText = totalPendingChanges == 0
                 ? Common.ResourceManager.GetString("Main_NoPendingChanges")
                 : string.Format(Common.ResourceManager.GetString("Main_CountPendingChanges"), totalPendingChanges);
+            }
+            else
+            {
+                this.notifyIcon.BalloonTipText = message;
+            }
+            
             this.notifyIcon.ShowBalloonTip(3);
         }
 
