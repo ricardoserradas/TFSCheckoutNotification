@@ -13,6 +13,13 @@ This is very useful for large teams and some particular situations:
 * Multi-Team Developer
     * Imagine a developer that works for several projects at the same time. I'm sure you know how crazy it is to work like one of them... Well, crazy work leads to crazy mistakes. Stop working on an unfinished task to start another in a different project, and so on... This app is a hero for these crazy guys that cannot forget little things like pending changes :-)
 
+Version 1.2
+=======================
+Here are the changes of this version:
+* **Localization**
+	* Users of Windows from Brazil can now use this tool in Portuguese.
+* Some bugs fixed
+
 Version 1.1
 =======================
 This new version comes with these cool new stuff:
