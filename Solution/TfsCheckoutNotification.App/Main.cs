@@ -46,8 +46,6 @@ namespace TfsCheckoutNotification.App
             get { return this._pendingChanges; }
         }
 
-        public static ResourceManager ResourceManager;
-
         public Main()
         {
             try
@@ -56,8 +54,6 @@ namespace TfsCheckoutNotification.App
                 Thread.CurrentThread.CurrentUICulture = MessageBox.Show("Choose Yes for pt-BR or No for en-US", "Choose Language", MessageBoxButtons.YesNo) ==
                                                         DialogResult.Yes ? new CultureInfo("pt-BR") : new CultureInfo("en-US");
 #endif
-
-                ResourceManager = new ResourceManager("TfsCheckoutNotification.App.Resources", this.GetType().Assembly);
 
                 this._pendingChanges = new List<model.PendingChange>();
 
@@ -127,7 +123,7 @@ namespace TfsCheckoutNotification.App
 
             if (string.IsNullOrWhiteSpace(tpcUri))
             {
-                throw new ArgumentNullException("CollectionURI", ResourceManager.GetString("Main_SpecifyCollection"));
+                throw new ArgumentNullException("CollectionURI", message: Common.ResourceManager.GetString("Main_SpecifyCollection"));
             }
 
             if (string.IsNullOrWhiteSpace(tpcUri)) return null;
@@ -169,7 +165,7 @@ namespace TfsCheckoutNotification.App
             catch (Exception exception)
             {
                 EventLog.WriteEntry(Common.EventLogSource, exception.Message, EventLogEntryType.Error);
-                this.ShowToast(0, ResourceManager.GetString("Main_ErrorConnectTFS"));
+                this.ShowToast(0, Common.ResourceManager.GetString("Main_ErrorConnectTFS"));
             }
         }
 
@@ -192,8 +188,8 @@ namespace TfsCheckoutNotification.App
             this.notifyIcon.BalloonTipIcon = string.IsNullOrWhiteSpace(message) ? ToolTipIcon.Info : ToolTipIcon.Warning;
 
             this.notifyIcon.BalloonTipText = totalPendingChanges == 0
-                ? ResourceManager.GetString("Main_NoPendingChanges")
-                : string.Format(ResourceManager.GetString("Main_CountPendingChanges"), totalPendingChanges);
+                ? Common.ResourceManager.GetString("Main_NoPendingChanges")
+                : string.Format(Common.ResourceManager.GetString("Main_CountPendingChanges"), totalPendingChanges);
             this.notifyIcon.ShowBalloonTip(3);
         }
 
@@ -296,7 +292,7 @@ namespace TfsCheckoutNotification.App
                 }
                 else
                 {
-                    this.ShowToast(0, ResourceManager.GetString("Main_SpecifyCollection"), true);
+                    this.ShowToast(0, Common.ResourceManager.GetString("Main_SpecifyCollection"), true);
                 }
             }
             catch (Exception exception)

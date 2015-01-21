@@ -180,4 +180,7 @@
   <data name="PendingChange_UndoConfirmation" xml:space="preserve">
     <value>Are you sure you want to undo all the selected items?</value>
   </data>
+  <data name="Common_UnexpectedException" xml:space="preserve">
+    <value>There was an unexpected error with TFS Checkout Notification and it needs to be closed. \r\n\r\nContact the author to notify him about the problem. There's a new Event Log entry that may help.</value>
+  </data>
 </root>

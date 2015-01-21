@@ -61,7 +61,7 @@ namespace TfsCheckoutNotification.App
         {
             if (string.IsNullOrWhiteSpace(txtCollection.Text))
             {
-                MessageBox.Show(Main.ResourceManager.GetString("Main_SpecifyCollection"), Main.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Common.ResourceManager.GetString("Main_SpecifyCollection"), Common.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 btnChangeCollection.Focus();
 
@@ -74,14 +74,14 @@ namespace TfsCheckoutNotification.App
                 
                 if (string.IsNullOrWhiteSpace(txtIntervalValue.Text))
                 {
-                    MessageBox.Show(Main.ResourceManager.GetString("Configuration_SetInterval"), Main.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Common.ResourceManager.GetString("Configuration_SetInterval"), Common.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtIntervalValue.Focus();
                     return;
                 }
                 
                 if (!int.TryParse(txtIntervalValue.Text, out tryResult))
                 {
-                    MessageBox.Show(Main.ResourceManager.GetString("Configuration_IntervalInteger"), Main.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Common.ResourceManager.GetString("Configuration_IntervalInteger"), Common.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtIntervalValue.Text = string.Empty;
                     txtIntervalValue.Focus();
                     return;
@@ -89,7 +89,7 @@ namespace TfsCheckoutNotification.App
                 
                 if (cmbIntervalType.SelectedItem == null)
                 {
-                    MessageBox.Show(Main.ResourceManager.GetString("Configuration_IntervalType"), Main.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Common.ResourceManager.GetString("Configuration_IntervalType"), Common.ResourceManager.GetString("Main_ErrorTitle"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     cmbIntervalType.Focus();
                     return;
                 }
@@ -127,12 +127,12 @@ namespace TfsCheckoutNotification.App
         {
             if (intervalInput.Equals("hour"))
             {
-                return Main.ResourceManager.GetString("Configuration_IntervalHour");
+                return Common.ResourceManager.GetString("Configuration_IntervalHour");
             }
 
             if (intervalInput.Equals("minute"))
             {
-                return Main.ResourceManager.GetString("Configuration_IntervalMinute");
+                return Common.ResourceManager.GetString("Configuration_IntervalMinute");
             }
 
             return null;
